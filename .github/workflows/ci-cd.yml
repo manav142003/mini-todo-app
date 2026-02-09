@@ -20,13 +20,12 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /home/ubuntu/mimi-todo-app
+            cd /home/ubuntu/mini-todo-app
             git pull
             git checkout main
-            cd mini-todo-frontend
+            cd /home/ubuntu/mini-todo-app/mini-todo-frontend
             npm install
             npm run build
-            cd /home/ubuntu/mini-todo-backend
-            cd mini-todo-backend
+            cd/home/ubuntu/mini-todo-app/mini-todo-backend
             npm install
             pm2 start app.js --name=backend
