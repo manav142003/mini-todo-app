@@ -26,7 +26,7 @@ jobs:
             cd mini-todo-frontend
             npm install
             npm run build
-            cd ..
+            cd /home/ubuntu/mini-todo-backend
             cd mini-todo-backend
             npm install
             pm2 start app.js --name=backend
