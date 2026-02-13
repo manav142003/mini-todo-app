@@ -55,7 +55,7 @@ function App() {
       margin: "auto"
     }}>
       <h1 style={{ textAlign: "center", color: "#5c48ee" }}>
-       Patel's App
+       Manav App
       </h1>
 
       <div style={{ display: "flex", marginBottom: "20px" }}>

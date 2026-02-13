@@ -1,0 +1,31 @@
+name: frontend CI/CD
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'mini-todo-frontend/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: AWS
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/mini-todo-app
+            git pull origin main
+            cd mini-todo-frontend
+            npm install
+            npm run build
+           
