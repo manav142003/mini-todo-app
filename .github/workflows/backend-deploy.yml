@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'backend/**'
+      - 'mini-todo-backend/**'
 
 jobs:
   deploy:
@@ -25,6 +25,6 @@ jobs:
           script: |
             cd /home/ubuntu/mini-todo-app/mini-todo-backend
             git pull origin main
-            cd backend
+            cd mini-todo-backend
             npm install
             pm2 restart server || pm2 start server.js --name server
