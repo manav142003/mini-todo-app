@@ -10,6 +10,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: AWS
 
     steps:
       - name: Checkout Code
@@ -22,7 +23,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /home/ubuntu/mini-todo-app
+            cd /home/ubuntu/mini-todo-app/mini-todo-backend
             git pull origin main
             cd backend
             npm install
