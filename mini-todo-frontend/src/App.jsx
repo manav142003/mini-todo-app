@@ -11,7 +11,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = () => {
-    axios.get("http://65.2.175.250:3000/tasks")
+    axios.get("http://65.0.177.220 :3000/tasks")
       .then(res => setTasks(res.data || []))
       .catch(err => console.error("fetch error:", err));
   };
@@ -23,7 +23,7 @@ function App() {
   const addTask = () => {
     if (!task.trim()) return;
 
-    axios.post("http://65.2.175.250:3000/tasks", { task })
+    axios.post("http://65.0.177.220 :3000/tasks", { task })
       .then(res => {
         setTasks(res.data.tasks || []);
         setTask("");
@@ -32,7 +32,7 @@ function App() {
   };
 
   const toggleComplete = (t) => {
-    axios.patch(`http://65.2.175.250:3000/tasks/${t.id}`, {
+    axios.patch(`http://65.0.177.220 :3000/tasks/${t.id}`, {
       completed: !t.completed
     })
     .then(res => {
@@ -42,7 +42,7 @@ function App() {
   };
 
   const removeTask = (id) => {
-    axios.delete(`http://65.2.175.250:3000/tasks/${id}`)
+    axios.delete(`http://65.0.177.220 :3000/tasks/${id}`)
       .then(res => setTasks(res.data.tasks || []))
       .catch(err => console.error("delete error:", err));
   };
