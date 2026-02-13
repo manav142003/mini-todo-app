@@ -1,4 +1,4 @@
-name: Deploy Backend to EC2
+name: Backend CI/CD
 
 on:
   push:
@@ -12,20 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Create SSH Key
-        run: |
-          echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
-          chmod 600 private_key.pem
-
-      - name: Deploy to EC2 Server
-        run: |
-          ssh -o StrictHostKeyChecking=no -i private_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            cd mini-todo-app
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/mini-todo-app
             git pull origin main
             cd backend
             npm install
-            pm2 restart backend || pm2 start server.js --name backend
-          EOF
+            pm2 restart server || pm2 start server.js --name server

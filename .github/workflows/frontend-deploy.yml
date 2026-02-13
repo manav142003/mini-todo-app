@@ -1,4 +1,4 @@
-name: Deploy Frontend to S3
+name: Frontend CI/CD
 
 on:
   push:
@@ -8,38 +8,35 @@ on:
       - 'frontend/**'
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: frontend
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install Dependencies
-        run: |
-          cd frontend
-          npm install
+        run: npm install
 
-      - name: Build Frontend
-        run: |
-          cd frontend
-          npm run build
+      - name: Build Project
+        run: npm run build
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # If using React (CRA)
       - name: Deploy to S3
-        run: aws s3 sync frontend/build s3://${{ secrets.S3_BUCKET }} --delete
-
-      # If using Vite, replace above line with:
-      # run: aws s3 sync frontend/dist s3://${{ secrets.S3_BUCKET }} --delete
+        run: |
+          aws s3 sync build/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
