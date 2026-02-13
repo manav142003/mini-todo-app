@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /home/ubuntu/mini-todo-app/mini-todo-backend
+            cd /home/ubuntu/mini-todo-app
             git pull origin main
             cd mini-todo-backend
             npm install
