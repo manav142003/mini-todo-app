@@ -1,11 +1,11 @@
-name: Frontend CI/CD
+name: S3 CI/CD
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'frontend/**'
+      - 'mini-todo-frontend/**'
 
 jobs:
   build-and-deploy:
