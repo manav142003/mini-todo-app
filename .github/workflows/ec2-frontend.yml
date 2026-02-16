@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+    
 
 jobs:
   deploy:
@@ -27,4 +28,3 @@ jobs:
             cd mini-todo-frontend
             npm install
             npm run build
-            
