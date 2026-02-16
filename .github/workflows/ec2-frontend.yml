@@ -26,21 +26,7 @@ jobs:
             git config --global --add safe.directory /home/ubuntu/mini-todo-app
             cd /home/ubuntu/mini-todo-app
             git pull origin main
-
             cd mini-todo-frontend
             npm install
             npm run build
-
-            # Install nginx (only first time needed)
-            sudo apt update
-            sudo apt install -y nginx
-
-            # Remove old build
-            sudo rm -rf /var/www/html/*
-
-            # Copy new build files
-            sudo cp -r build/* /var/www/html/
-
-            # Restart nginx
-            sudo nginx -t
-            sudo systemctl restart nginx
+            
