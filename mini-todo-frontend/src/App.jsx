@@ -55,9 +55,9 @@ function App() {
       margin: "auto"
     }}>
       <h1 style={{ textAlign: "center", color: "#5c48ee" }}>
-       Manav'sPatel App
+       Manav Patel App
       </h1>
-      {/*  */}
+  
       <div style={{ display: "flex", marginBottom: "20px" }}>
         <input
           value={task}
