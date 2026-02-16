@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'mini-todo-backend/**'
 
 jobs:
   deploy:
