@@ -65,7 +65,7 @@ jobs:
 
             # Fix permissions
             sudo chown -R ubuntu:ubuntu /home/ubuntu/mini-todo-app/mini-todo-frontend/dist
-            sudo chmod 755 /home/ubuntu/mini-todo-app
+            sudo chmod 755 /home/ubuntu
 
             # Test & restart
             sudo nginx -t
