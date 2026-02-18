@@ -27,6 +27,7 @@ jobs:
 
             # Install Nginx if not installed
             if ! command -v nginx > /dev/null
+            
             then
               sudo apt update
               sudo apt install -y nginx
@@ -71,3 +72,4 @@ jobs:
             sudo nginx -t
             sudo systemctl restart nginx
             sudo systemctl enable nginx
+        #    
