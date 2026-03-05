@@ -44,7 +44,7 @@ jobs:
             npm install
             npm run build
 
-            # Create nginx config FIRST
+            # Create nginx config FIRST//
             sudo tee /etc/nginx/sites-available/mini-todo > /dev/null << 'EOF'
             server {
                 listen 80;
@@ -72,5 +72,5 @@ jobs:
             # Test & restart
             sudo nginx -t
             sudo systemctl restart nginx
-            sudo systemctl enable nginx
-            
+            sudo systemctl enable nginx 
+  
