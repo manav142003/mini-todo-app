@@ -51,7 +51,7 @@ jobs:
 
                 # serve React
                  location / {
-                    root /usr/share/nginx/html;
+                    root /home/ubuntu/mini-todo-app/mini-todo-frontend/dist;
                    try_files $uri $uri/ /index.html;
                    }
 
