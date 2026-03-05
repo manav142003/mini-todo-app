@@ -46,24 +46,30 @@ jobs:
 
             # Create nginx config FIRST//
             sudo tee /etc/nginx/sites-available/mini-todo > /dev/null << 'EOF'
-             server {
+            server {
                  listen 80;
+                 server_name _;
 
-                # serve React
-                 location / {
-                    root /home/ubuntu/mini-todo-app/mini-todo-frontend/dist;
-                   try_files $uri $uri/ /index.html;
-                   }
+                 # Frontend build files
+                 root /home/ubuntu/mini-todo-app/mini-todo-frontend/dist;
+                 index index.html;
 
-                  # proxy /api calls to Node backend
-                  location /api/ {
-                  proxy_pass http://backend:5000/api/;
-                  proxy_http_version 1.1;
-                  proxy_set_header Upgrade $http_upgrade;
-                  proxy_set_header Connection "Upgrade";
-                  proxy_set_header Host $host;
-                   }
-                      }
+                 # React routing support
+                location / {
+                  try_files $uri $uri/ /index.html;
+               }
+
+                 # Backend API Proxy
+                 location /api/ {
+                 proxy_pass http://localhost:5000/;
+                 proxy_http_version 1.1;
+
+                 proxy_set_header Upgrade $http_upgrade;
+                 proxy_set_header Connection 'upgrade';
+                 proxy_set_header Host $host;
+                 proxy_cache_bypass $http_upgrade;
+                }
+            }
             EOF
 
             # Enable config
