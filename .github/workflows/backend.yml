@@ -30,7 +30,7 @@ jobs:
             fi
 
           
-            # Clone repo only if not exists//
+            # Clone repo only if not exists
             if [ ! -d "/home/ubuntu/mini-todo-app" ]; then
               git clone https://github.com/manav142003/mini-todo-app.git /home/ubuntu/mini-todo-app
             fi
